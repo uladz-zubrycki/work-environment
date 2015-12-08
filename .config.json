@@ -1,0 +1,14 @@
+{
+    "fsi-path": "%ProgramFiles(x86)%\\Microsoft SDKs\\F#\\4.0\\Framework\\v4.0\\fsi.exe",
+    "vs-path": "%ProgramFiles(x86)%\\Microsoft Visual Studio 14.0\\Common7\\IDE\\devenv.exe",
+    "solution-path": "../tp/Code/Tp.All.sln",
+    "repository": {
+        "path": "../tp",
+        "url": "",
+        "owner": "",
+        "name": "",
+        "username": "",
+        "password": ""
+    },
+    "database-name": "TargetProcess"
+}
