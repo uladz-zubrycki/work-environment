@@ -4,11 +4,11 @@
     "solution-path": "../tp/Code/Tp.All.sln",
     "repository": {
         "path": "../tp",
-        "url": "",
-        "owner": "",
-        "name": "",
-        "username": "",
-        "password": ""
+        "url": "github-url",
+        "owner": "github-account-owner",
+        "name": "github-repository-name",
+        "username": "github-username",
+        "password": "github-password"
     },
     "database-name": "TargetProcess"
 }

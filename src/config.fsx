@@ -2,10 +2,10 @@
 #r @"FSharp.Data\lib\net40\FSharp.Data.dll"
 #load "Common.fsx"
 
-open Common
 open System
 open System.IO
 open FSharp.Data
+open Common
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 

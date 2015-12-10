@@ -8,6 +8,7 @@ open Common
 open FSharp.Data
 open HttpClient
 open Microsoft.FSharp.Reflection
+open System.Net
 open System.IO
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
@@ -19,6 +20,9 @@ let private apiRoot = "api.github.com"
 (* Common Types *)
 type SortDirection = Asc | Desc with override x.ToString() = Union.toString x
 type RepoInfo = { Owner: string; Repo: string; UserName: string; Password: string; }
+type HttpError400Response = JsonProvider<".\GithubClient\HttpError400.json">
+type HttpError422Response = JsonProvider<".\GithubClient\HttpError422.json">
+type HttpErrorResponse = JsonProvider<".\GithubClient\HttpError.json">
 
 (* Extensions *)
 let withRepoParameters repoInfo request = 
@@ -34,6 +38,8 @@ let maybeWithQueryStringParam name value request =
 let maybeWithQueryString parameters request = 
     (request, parameters) 
     ||> Seq.fold (fun req (name, value) -> req |> maybeWithQueryStringParam name value) 
+
+let apiFailure message = message |> WebException |> raise 
 
 [<AutoOpen>]
 module GetPullRequests = 
@@ -55,15 +61,27 @@ module GetPullRequests =
             let maybeSortDirection = sort |> Option.map (fst >> toStringLower)
             let maybeSortType = sort |> Option.map (snd >> toStringLower)
 
-            createRequest Get (buildUrl apiRoot repoInfo.Owner repoInfo.Repo)
-            |> withRepoParameters repoInfo
-            |> maybeWithQueryString ["state", maybeState;
-                                     "head", maybeHead;
-                                     "base", baseBranch;
-                                     "sort", maybeSortType;
-                                     "direction", maybeSortDirection;]
-            |> getResponseBody
-            |> Response.Parse
+            let response = 
+                createRequest Get (buildUrl apiRoot repoInfo.Owner repoInfo.Repo)
+                |> withRepoParameters repoInfo
+                |> maybeWithQueryString ["state", maybeState;
+                                         "head", maybeHead;
+                                         "base", baseBranch;
+                                         "sort", maybeSortType;
+                                         "direction", maybeSortDirection;]
+                |> getResponse
+
+            match (response.StatusCode, response.EntityBody) with
+            | 200, Some(response) -> 
+                Response.Parse response
+            | 400, Some(response) -> 
+                let error = HttpErrorResponse.Parse response
+                apiFailure <| sprintf "Bad request. Error: '%s'" error.Message 
+            | 401, Some(response) -> apiFailure"Github communication error: Bad credentials."
+            | 403, Some(response) -> apiFailure "Github communication error: Forbidden."
+            | statusCode, Some(response) -> 
+                apiFailure <| sprintf "Unexpected github communication error. Status code: '%d', response body: '%s'." statusCode response
+            | _ -> apiFailure <| sprintf "Unexpected github communication error."
 
 type GithubClient(owner, repo, username, password) =
     let repoInfo = { Owner = owner; Repo = repo; UserName = username; Password = password }
