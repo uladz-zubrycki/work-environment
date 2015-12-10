@@ -10,5 +10,6 @@
         "username": "github-username",
         "password": "github-password"
     },
-    "database-name": "TargetProcess"
+    "database-name": "TargetProcess",
+    "target-process-url": "target-process-url"
 }

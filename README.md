@@ -31,7 +31,10 @@ File `clean.bat` can be used for build artifacts removal. List of commands is de
   Starts webpack watcher by running `runWatcher.cmd` in solution folder.
 
 * __github__:
-  Launches github for current git branch. Opens page for branch pull-request, if exists; otherwise branch page itself.
+  Opens Github for current git branch. Opens page for branch pull-request, if exists; otherwise branch page itself.
+  
+* __tp__:
+  Opens TargetProcess entity view for current git branch.
 
 * __update-db__:
   Updates database by running `createDatabase.cmd` with db-name parameter in solution folder.

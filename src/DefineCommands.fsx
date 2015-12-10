@@ -31,8 +31,13 @@ let action = parsedArgs.GetResult(<@Action@>, defaultValue = "generate")
 
 defineCommand 
     { Name = "github";
-      Description = "Opens pull-request, if exists, on github for current git branch; otherwise opens branch itself.";
+      Description = "Opens Github for current git branch. Opens page for branch pull-request, if exists; otherwise branch page itself.";
       Action = ExecuteFsx(getCommandPath "Github.fsx", None) }
+
+defineCommand 
+    { Name = "tp";
+      Description = "Opens TargetProcess entity view for current git branch.";
+      Action = ExecuteFsx(getCommandPath "TargetProcess.fsx", None) }
 
 defineCommand 
     { Name = "build";
