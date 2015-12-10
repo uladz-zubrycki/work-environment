@@ -5,6 +5,7 @@
 open Repository
 open Config
 open Common
+open System
 open System.IO
 open System.Text.RegularExpressions
 open System.Diagnostics
@@ -14,6 +15,10 @@ Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 let curDir = Directory.GetCurrentDirectory()
 let repoDir = curDir @@ getConfigPathValue config.Repository.Path
 let targetProcessUrl = getConfigValue config.TargetProcessUrl
+
+if not (Uri.IsWellFormedUriString(targetProcessUrl, UriKind.Absolute)) then
+    configFailure <| sprintf "Invalid TargetProcessUrl value '%s'." targetProcessUrl
+
 let buildTpEntityUrl entityId = sprintf "%s/entity/%s" targetProcessUrl entityId
 
 match getActiveBranchRemoteName repoDir with

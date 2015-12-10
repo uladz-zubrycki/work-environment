@@ -6,6 +6,7 @@ open System
 open System.IO
 open FSharp.Data
 open Common
+open System
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
@@ -19,8 +20,9 @@ let config = Config.Load(configRelativePath)
 
 Directory.SetCurrentDirectory curDir
 
-let configFailure message = 
-    printfn "%s. Check your configuration file '%s'." message configPath
+let configFailure (message: string) = 
+    let message = message.TrimEnd([|'.'|])
+    printfn "%s.\nCheck your configuration file '%s'." message configPath
     exit 0
 
 let failure message = 
