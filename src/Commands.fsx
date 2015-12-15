@@ -76,15 +76,25 @@ let private generateCommand(outputDirectory: string) (cmd: Command) =
     File.WriteAllText(outputFilePath, createCommandHeader cmd)
     File.AppendAllText(outputFilePath, Environment.NewLine + Environment.NewLine)
     File.AppendAllText(outputFilePath, createCommandOutput cmd.Action)
+    printInfo <| sprintf "Command '%s' created." cmd.Name 
 
 let defineCommand cmd = commands.Add cmd
 let generateCommands outputDirectory = 
     if not (Directory.Exists outputDirectory) then
         Directory.CreateDirectory outputDirectory |> ignore
     
+    printInfo <| sprintf "Generating commands to '%s'." outputDirectory
     commands |> Seq.iter (generateCommand outputDirectory)
+    printSuccess "All commands are generated successfully."
 
 let deleteCommands outputDirectory = 
+    printInfo <| sprintf "Deleting commands from '%s'." outputDirectory
     commands
-    |> Seq.map (getCommandOutputPath outputDirectory)
-    |> Seq.iter (fun p -> if File.Exists p then File.Delete p)
+    |> Seq.map (fun cmd -> (cmd.Name, getCommandOutputPath outputDirectory cmd))
+    |> Seq.iter (fun (name, path) -> 
+        if File.Exists path then 
+            File.Delete path
+            printInfo <| sprintf "Command '%s' deleted." name
+        else 
+            printWarn <| sprintf "Can't delete command '%s'. File not found at '%s'" name path)
+    printSuccess "Commands are deleted successfully."
