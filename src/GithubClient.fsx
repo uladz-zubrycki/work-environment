@@ -2,6 +2,7 @@
 #r @"Http.fs\lib\net40\HttpClient.dll"
 #r @"FSharp.Data\lib\net40\FSharp.Data.dll"
 #load "Common.fsx"
+#load "Http.fsx"
 
 open System
 open Common
@@ -10,36 +11,23 @@ open HttpClient
 open Microsoft.FSharp.Reflection
 open System.Net
 open System.IO
+open Http
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
-(* Global constants *)
 let private curDir = Directory.GetCurrentDirectory()
 let private apiRoot = "api.github.com"
 
-(* Common Types *)
 type SortDirection = Asc | Desc with override x.ToString() = Union.toString x
 type RepoInfo = { Owner: string; Repo: string; UserName: string; Password: string; }
 type HttpError400Response = JsonProvider<".\GithubClient\HttpError400.json">
 type HttpError422Response = JsonProvider<".\GithubClient\HttpError422.json">
 type HttpErrorResponse = JsonProvider<".\GithubClient\HttpError.json">
 
-(* Extensions *)
 let withRepoParameters repoInfo request = 
     request 
     |> withHeader (UserAgent(repoInfo.UserName))
     |> withBasicAuthentication repoInfo.UserName repoInfo.Password
-
-let maybeWithQueryStringParam name value request = 
-    if value |> Option.isSome then
-        request |> withQueryStringItem { name = name; value = value.Value }
-    else request
-
-let maybeWithQueryString parameters request = 
-    (request, parameters) 
-    ||> Seq.fold (fun req (name, value) -> req |> maybeWithQueryStringParam name value) 
-
-let apiFailure message = message |> WebException |> raise 
 
 [<AutoOpen>]
 module GetPullRequests = 

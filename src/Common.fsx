@@ -10,6 +10,8 @@ module Union =
         let (case, _) = FSharpValue.GetUnionFields(v, typeof<'a>) 
         case.Name
 
+type Result<'a> = Success of 'a | Failure of string option
+
 let toLower(s: string) = s.ToLower()
 let toStringLower(o: obj) = o.ToString() |> toLower
 let (@@) fst snd = Path.Combine(fst, snd)

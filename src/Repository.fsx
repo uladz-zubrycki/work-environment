@@ -10,10 +10,7 @@ open System.Diagnostics
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
-(* Extensions *)
-type Result<'a> = Success of 'a | Failure of string option
-
-let getMaybeRebasingBranchRemoteName repoPath branch =
+let private getMaybeRebasingBranchRemoteName repoPath branch =
     let repoInternalPath = repoPath @@ ".git"
     let maybeRebaseDir = 
         ["rebase-apply"; "rebase-merge"]

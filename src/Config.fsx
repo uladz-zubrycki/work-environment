@@ -2,7 +2,6 @@
 #r @"FSharp.Data\lib\net40\FSharp.Data.dll"
 #load "Common.fsx"
 
-open System
 open System.IO
 open FSharp.Data
 open Common
