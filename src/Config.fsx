@@ -1,32 +1,40 @@
 #I @"..\packages"
 #r @"FSharp.Data\lib\net40\FSharp.Data.dll"
+#r @"Argu\lib\net40\Argu.dll"
 #load "Common.fsx"
 
 open System.IO
 open FSharp.Data
 open Common
 open System
+open Nessos.Argu
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
-[<Literal>]
-let private configRelativePath = """..\.config.json"""
-let private curDir = Directory.GetCurrentDirectory()
-let private configPath = configRelativePath |> normalizePath curDir
-let private configFolder = Path.GetDirectoryName configPath
-type private Config = JsonProvider<configRelativePath>
-let config = Config.Load(configRelativePath)
+type Arguments = Config_Path of string
+with
+    interface IArgParserTemplate with
+        member s.Usage =
+            match s with
+            | Config_Path(_) -> "Specifies path to the config file."
 
-Directory.SetCurrentDirectory curDir
+type private Config = JsonProvider<""".\JsonSamples\Config.json""">
+
+let private curDir = Directory.GetCurrentDirectory()
+let private argsParser = ArgumentParser.Create<Arguments>()
+let private args = argsParser.ParseCommandLine(inputs = fsi.CommandLineArgs, ignoreUnrecognized = true)
+
+let private configPath = 
+    let pathArg = args.GetResult(<@Config_Path@>, defaultValue = "..\.config.json")
+    if not (File.Exists pathArg) then failure <| sprintf "Can't find configuration file at '%s'." pathArg
+    else pathArg
+
+let private configFolder = Path.GetDirectoryName configPath
+let config = Config.Load(configPath)
 
 let configFailure (message: string) = 
     let message = message.TrimEnd([|'.'|])
-    printfn "%s.\nCheck your configuration file '%s'." message configPath
-    exit 0
-
-let failure message = 
-    printfn "%s" message
-    exit 0
+    failure "%s.\nCheck your configuration file '%s'." message configPath
 
 let getConfigValue (value: string) = 
     if value.[0] = '%' && value.[value.Length - 1] = '%' then

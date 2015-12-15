@@ -20,13 +20,13 @@ with
             | Action(_) -> "Specifies which action should be performed. Possible options: generate, delete"
 
 let curDir = Directory.GetCurrentDirectory()
-let outputDirectory = curDir @@ @"..\bin"
+let outputDirectory = normalizePath (curDir @@ @"..\bin") (Directory.GetCurrentDirectory())
 let repoFolder = getConfigPathValue(config.Repository.Path)
 let commandsPath = curDir @@ "Commands"
 let getCommandPath commandFile = commandsPath @@ commandFile
 
 let parser = ArgumentParser.Create<Arguments>()
-let parsedArgs = parser.Parse(fsi.CommandLineArgs |> Array.skip 1)
+let parsedArgs = parser.ParseCommandLine(inputs = fsi.CommandLineArgs, ignoreUnrecognized = true)
 let action = parsedArgs.GetResult(<@Action@>, defaultValue = "generate")
 
 defineCommand 

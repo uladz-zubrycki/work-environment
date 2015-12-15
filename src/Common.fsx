@@ -16,13 +16,33 @@ let toLower(s: string) = s.ToLower()
 let toStringLower(o: obj) = o.ToString() |> toLower
 let (@@) fst snd = Path.Combine(fst, snd)
 
-let normalizePath relativeRoot path =
-    let path = Environment.ExpandEnvironmentVariables path
-    let absolutePath = if Path.IsPathRooted path then path else relativeRoot @@ path
-   
-    absolutePath
-    |> Path.GetFullPath
-    |> (fun p -> p.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
+let private printColored color message = 
+    let cmdColor = Console.ForegroundColor
+    Console.ForegroundColor <- color
+    printfn "%s" message
+    Console.ForegroundColor <- cmdColor
+
+let printInfo message = printColored ConsoleColor.DarkGray message
+let printWarn message = printColored ConsoleColor.DarkYellow message
+let printSuccess message = printColored ConsoleColor.DarkGreen message 
+let printError message = printColored ConsoleColor.DarkRed message
+    
+let failure message = 
+    printError message
+    exit 0
+
+let normalizePath path relativeRoot =
+    try
+        path
+        |> Environment.ExpandEnvironmentVariables
+        |> (fun p -> if Path.IsPathRooted p then p else relativeRoot @@ p)
+        |> Path.GetFullPath
+        |> (fun p -> p.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar))
+    with
+        | :? System.Security.SecurityException
+        | :? System.NotSupportedException 
+        | :? System.IO.PathTooLongException as ex ->
+          raise <| new System.IO.IOException (sprintf "Can't normalize path '%s'." path, ex)
 
 let startProcess(fileName, args, startNewShell) =
     let procInfo = new ProcessStartInfo()
@@ -32,7 +52,7 @@ let startProcess(fileName, args, startNewShell) =
     Process.Start(procInfo)
 
 let startProcessInDir(dirPath, fileName, args, startNewShell) = 
-    if not (Directory.Exists dirPath) then
+    if not (Directory.Exists dirPath) then 
         failwith <| sprintf "Directory doesn't exist '%s'" dirPath
     
     let processFilePath = dirPath @@ fileName

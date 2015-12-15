@@ -20,9 +20,9 @@ let private apiRoot = "api.github.com"
 
 type SortDirection = Asc | Desc with override x.ToString() = Union.toString x
 type RepoInfo = { Owner: string; Repo: string; UserName: string; Password: string; }
-type HttpError400Response = JsonProvider<".\GithubClient\HttpError400.json">
-type HttpError422Response = JsonProvider<".\GithubClient\HttpError422.json">
-type HttpErrorResponse = JsonProvider<".\GithubClient\HttpError.json">
+type HttpError400Response = JsonProvider<".\JsonSamples\GithubClient\HttpError400.json">
+type HttpError422Response = JsonProvider<".\JsonSamples\GithubClient\HttpError422.json">
+type HttpErrorResponse = JsonProvider<".\JsonSamples\GithubClient\HttpError.json">
 
 let withRepoParameters repoInfo request = 
     request 
@@ -32,7 +32,7 @@ let withRepoParameters repoInfo request =
 [<AutoOpen>]
 module GetPullRequests = 
     let private buildUrl = sprintf "https://%s/repos/%s/%s/pulls"
-    type private Response = JsonProvider<".\GithubClient\GetPullRequests.json">
+    type private Response = JsonProvider<".\JsonSamples\GithubClient\GetPullRequests.json">
     type PullRequestState = Open | Closed | All with override x.ToString() = Union.toString x
     type PullRequestHead = { User: string; RefName: string }
     type PullRequestSortType = Created | Updated | Popularity | LongRunning with override x.ToString() = Union.toString x
