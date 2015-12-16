@@ -1,0 +1,1563 @@
+{
+	"Acid": "7D460914897C384463A62007D8D63FDB",
+	"Edition": "Pro",
+	"Version": "3.8.0.22556",
+	"AppContext": {
+		"ProjectContext": {
+			"No": false
+		},
+		"TeamContext": {
+			"No": true
+		}
+	},
+	"Culture": {
+		"Name": "en-US",
+		"TimePattern": "g:i A",
+		"ShortDateFormat": "M/d/yyyy",
+		"LongDateFormat": "dddd, MMMM d, yyyy",
+		"DecimalSeparator": ".",
+		"CurrencyDecimalSeparator": ".",
+		"CurrencyDecimalDigits": 2,
+		"CurrencyGroupSeparator": ","
+	},
+	"LoggedUser": {
+		"ResourceType": "User",
+		"Kind": "User",
+		"Id": 75766,
+		"FirstName": "Vladislav",
+		"LastName": "Zubritsky",
+		"Email": "zubritsky@targetprocess.com",
+		"IsActive": true,
+		"IsAdministrator": false
+	},
+	"Processes": {
+		"Items": [
+			{
+				"Id": 1,
+				"Name": "Kanban TP",
+				"IsDefault": true,
+				"Terms": {
+					"Items": [
+						{
+							"WordKey": "Iteration",
+							"Value": "Iteration",
+							"EntityType": {
+								"Id": 3
+							}
+						},
+						{
+							"WordKey": "Iterations",
+							"Value": "Iterations",
+							"EntityType": {
+								"Id": 3
+							}
+						},
+						{
+							"WordKey": "Iteration Big Icon Text",
+							"Value": "Iteration",
+							"EntityType": {
+								"Id": 3
+							}
+						},
+						{
+							"WordKey": "Iteration Small Icon Text",
+							"Value": "I",
+							"EntityType": {
+								"Id": 3
+							}
+						}
+					]
+				},
+				"Practices": {
+					"Items": [
+						{
+							"Name": "Planning",
+							"Description": "General Project planning. Supports iterative development, user stories and tasks hierarchy",
+							"DisplayName": "Planning",
+							"EffortPoints": "Point",
+							"IsStoryEffortEqualsSumTasksEffort": true,
+							"AreAllTasksClosedWhenUserStoryIsClosed": true
+						},
+						{
+							"Name": "Bug Tracking",
+							"Description": "Simple Bug Tracking. Bugs list, bugs workflow and assignments",
+							"DisplayName": "Bug Tracking"
+						},
+						{
+							"Name": "Requirements",
+							"Description": "High level requirements management.",
+							"DisplayName": "Epics and Features"
+						},
+						{
+							"Name": "Test Cases",
+							"Description": "Test cases and test plans management.",
+							"DisplayName": "Test Cases"
+						},
+						{
+							"Name": "Source Control",
+							"Description": "Source control management with Subversion.",
+							"DisplayName": "Source Control"
+						},
+						{
+							"Name": "Iterations",
+							"Description": "Supports Iterations-oriented development practice.",
+							"DisplayName": "Iterations"
+						},
+						{
+							"Name": "Help Desk",
+							"Description": "Integrated Help Desk.",
+							"DisplayName": "Help Desk"
+						},
+						{
+							"Name": "Time Tracking",
+							"Description": "Controls spent and remaining time for each assignable, iteration, release. Provides better project traceability and stats close to reality",
+							"DisplayName": "Time Tracking",
+							"IsCloseAssignableIfZeroTimeRemaining": false,
+							"IsTimeDescriptionFieldVisible": true,
+							"IsTimeDescriptionRequired": false,
+							"IsRequiredShowRoleDropDown": true
+						}
+					]
+				},
+				"CustomFields": {
+					"Items": [
+						{
+							"Id": 5,
+							"EntityKind": "Bug",
+							"Name": "Browser",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField7",
+							"Value": "Internet Explorer\r\nFirefox\r\nSafari\r\nChrome",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 9,
+							"EntityKind": "Time",
+							"Name": "Time Type",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField1",
+							"Value": "Emails\r\nMeeting\r\nQA\r\nDevelopment\r\nMarketing\r\n[Day Off]",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 23,
+							"EntityKind": "Request",
+							"Name": "Customer Center Info",
+							"Type": "RichText",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField1",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 24,
+							"EntityKind": "Request",
+							"Name": "From Paid",
+							"Type": "CheckBox",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 44,
+							"EntityKind": "TestCase",
+							"Name": "Automation Test Created",
+							"Type": "CheckBox",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField1",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 52,
+							"EntityKind": "Request",
+							"Name": "Company Size",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField3",
+							"Value": "Micro (<10)\r\nSmall (10-50)\r\nMedium (50-250)\r\nLarge (>250)",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 59,
+							"EntityKind": "Bug",
+							"Name": "Came out to Production",
+							"Type": "CheckBox",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 62,
+							"EntityKind": "Impediment",
+							"Name": "Related entity",
+							"Type": "Entity",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField1",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 90,
+							"EntityKind": "UserStory",
+							"Name": "Python Tests",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField1",
+							"Value": "No need\r\nShould be added\r\nAdded",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 91,
+							"EntityKind": "Bug",
+							"Name": "Python Tests",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField1",
+							"Value": "No need\r\nShould be added\r\nAdded",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 96,
+							"EntityKind": "Request",
+							"Name": "Tracked by",
+							"Type": "MultipleSelectionList",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField6",
+							"Value": "tracked_by_Sergey\r\ntracked_by_Kate\r\ntracked_by_Alex\r\ntracked_by_Slava\r\ntracked_by_Anna",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 97,
+							"EntityKind": "Project",
+							"Name": "Project Type",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField1",
+							"Value": "Internal\r\nNon Commercial\r\nCustom\r\nProduct\r\nHead",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 98,
+							"EntityKind": "Bug",
+							"Name": "Tracked by",
+							"Type": "MultipleSelectionList",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField8",
+							"Value": "tracked_by_Sergey\r\ntracked_by_Kate\r\ntracked_by_Alex\r\ntracked_by_Slava\r\ntracked_by_Anna",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 100,
+							"EntityKind": "Project",
+							"Name": "State",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField2",
+							"Value": "New\r\nPlanned\r\nIn Progress\r\nAbandoned\r\nCompleted",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 122,
+							"EntityKind": "Feature",
+							"Name": "Target Release",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField1",
+							"Value": "Q3 2012\r\nQ4 2012\r\nQ1 2013\r\nQ2 2013\r\nQ3 2013\r\nQ4 2013\r\nQ1 2014\r\nQ2 2014\r\nQ3 2014\r\nQ4 2014\r\nQ1 2015\r\nQ2 2015\r\nQ3 2015\r\nQ4 2015\r\nQ1 2016\r\nQ2 2016\r\nQ3 2016\r\nQ4 2016",
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 130,
+							"EntityKind": "UserStory",
+							"Name": "Google Doc",
+							"Type": "URL",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 131,
+							"EntityKind": "Task",
+							"Name": "Google Doc",
+							"Type": "URL",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 140,
+							"EntityKind": "Feature",
+							"Name": "Google Doc",
+							"Type": "URL",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 143,
+							"EntityKind": "Request",
+							"Name": "Area",
+							"Type": "MultipleSelectionList",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField5",
+							"Value": "Other\r\nN/A\r\nUndelete\r\nCustom reports limitations\r\nHelp Desk\r\nImport\r\nExport\r\nInstall/Upgrade\r\nBurn Down\r\nToDo list\r\nPerformance\r\nMultiple Final States\r\nPrint\r\nWorkflow states (how to)\r\nEffort/Estimate/Progress\r\nNew Search\r\nVacations/Calendar\r\nQA improvements\r\nCustom reports (errors)\r\nAllocation/Load by person\r\nTP3 filters\r\nTP3 cards not seen on board\r\nEmail notifications\r\nPlugins troubleshooting\r\nREST API\r\nPOP email plugin\r\nTeams <-> Projects\r\nTime Sheet\r\nCustom Fields\r\nTP3 Access\r\nSQL issues\r\nMashups\r\niOS\r\nMigration\r\nComet\r\nRestore On-Demand account\r\nMove to European server\r\nSubversion\r\nGit\r\nBugzilla\r\nCKEditor\r\nTimeline\r\nRename On-Demand account\r\nMercurial\r\nTFS\r\nPermissions\r\nJIRA\r\nLists\r\nCustomize Cards\r\nBrowser issues\r\nVisual Studio\r\nTime\r\nAuthentication\r\nRelations\r\nProduct questions\r\nShare Boards\r\nZapier\r\nCDN\r\nAndroid\r\n@mention\r\nLeft Menu\r\nProgram\r\nDowntimes\r\nEclipse\\Mylyn\r\nEpic\r\nFollow\r\nCross-Project Releases\r\nAttachments\r\nPeople Capacity\r\nCustom Rules\r\nWebHooks\r\nCustom Graphic Reports\r\nTeam Workflow\r\nDashboards\r\nVisual Encoding\r\nLogin problems\r\nDomain model (hierarchy)\r\nSorting and Ordering\r\nMilestone\r\nMarkdown\r\nSingle Sign-On\r\nLicense Problems",
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": "",
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 144,
+							"EntityKind": "Request",
+							"Name": "Internal Notes",
+							"Type": "RichText",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField4",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 210,
+							"EntityKind": "Build",
+							"Name": "States",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField3",
+							"Value": "Scheduled\r\nRelease started / In testing\r\nProduction Ready\r\nReleased to all",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 221,
+							"EntityKind": "UserStory",
+							"Name": "UserVoice Idea",
+							"Type": "URL",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField3",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 222,
+							"EntityKind": "Bug",
+							"Name": "UserVoice Idea",
+							"Type": "URL",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField3",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 223,
+							"EntityKind": "Feature",
+							"Name": "UserVoice Idea",
+							"Type": "URL",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField3",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 237,
+							"EntityKind": "UserStory",
+							"Name": "Guide Update is Required",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField4",
+							"Value": "Yes\r\nNo",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 238,
+							"EntityKind": "Bug",
+							"Name": "Guide Update is Required",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField4",
+							"Value": "Yes\r\nNo",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 240,
+							"EntityKind": "UserStory",
+							"Name": "Guide Update Progress",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField5",
+							"Value": "In Progress\r\nDone",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 241,
+							"EntityKind": "Bug",
+							"Name": "Guide Update Progress",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField5",
+							"Value": "In Progress\r\nDone",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 301,
+							"EntityKind": "Feature",
+							"Name": "Kano",
+							"Type": "DropDown",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField4",
+							"Value": "Must Have\r\nPerformer\r\nExciter",
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 302,
+							"EntityKind": "Feature",
+							"Name": "New Licenses per Month",
+							"Type": "Number",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField5",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 303,
+							"EntityKind": "Feature",
+							"Name": "Duration in months",
+							"Type": "Number",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField6",
+							"Value": null,
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 304,
+							"EntityKind": "Build",
+							"Name": "Notes",
+							"Type": "Text",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField1",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 437,
+							"EntityKind": "Build",
+							"Name": "Deployed to Plan",
+							"Type": "Date",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField2",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 438,
+							"EntityKind": "Build",
+							"Name": "Deployed to Sandbox",
+							"Type": "Date",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField4",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 439,
+							"EntityKind": "Build",
+							"Name": "Deployed to Paid",
+							"Type": "Date",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField5",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 440,
+							"EntityKind": "Build",
+							"Name": "Deployed to All",
+							"Type": "Date",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField6",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 441,
+							"EntityKind": "Build",
+							"Name": "Put into CC",
+							"Type": "Date",
+							"Required": false,
+							"Listed": true,
+							"EntityFieldName": "CustomField7",
+							"Value": null,
+							"CalculationModel": null,
+							"CalculationModelContainsCollections": null,
+							"Units": null,
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 479,
+							"EntityKind": "UserStory",
+							"Name": "KickStarted",
+							"Type": "CheckBox",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField6",
+							"Value": null,
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": "",
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 480,
+							"EntityKind": "Bug",
+							"Name": "KickStarted",
+							"Type": "CheckBox",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField6",
+							"Value": null,
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": "",
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 481,
+							"EntityKind": "Request",
+							"Name": "HoursSpentInQueue",
+							"Type": "Number",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField7",
+							"Value": null,
+							"CalculationModel": "iif(Comments.Count > 0, (Datetime.Now-LastCommentDate).TotalHours, (DateTime.Now-CreateDate).TotalHours)",
+							"CalculationModelContainsCollections": true,
+							"Units": "hours",
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						},
+						{
+							"Id": 487,
+							"EntityKind": "Request",
+							"Name": "Notify on",
+							"Type": "Date",
+							"Required": false,
+							"Listed": false,
+							"EntityFieldName": "CustomField8",
+							"Value": null,
+							"CalculationModel": "",
+							"CalculationModelContainsCollections": null,
+							"Units": "",
+							"Process": {
+								"Id": 1,
+								"IsDefault": true
+							}
+						}
+					]
+				}
+			}
+		]
+	},
+	"SelectedProjects": {
+		"Items": [
+			{
+				"Id": 49105,
+				"Name": "TP3",
+				"Process": {
+					"Id": 1,
+					"Name": "Kanban TP"
+				},
+				"Program": {
+					"Id": 28251,
+					"Name": "Targetprocess"
+				}
+			}
+		]
+	},
+	"SelectedTeams": {
+		"Items": []
+	},
+	"CustomFields": {
+		"Items": [
+			{
+				"Id": 5,
+				"EntityKind": "Bug",
+				"Name": "Browser",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField7",
+				"Value": "Internet Explorer\r\nFirefox\r\nSafari\r\nChrome",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 9,
+				"EntityKind": "Time",
+				"Name": "Time Type",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField1",
+				"Value": "Emails\r\nMeeting\r\nQA\r\nDevelopment\r\nMarketing\r\n[Day Off]",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 23,
+				"EntityKind": "Request",
+				"Name": "Customer Center Info",
+				"Type": "RichText",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField1",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 24,
+				"EntityKind": "Request",
+				"Name": "From Paid",
+				"Type": "CheckBox",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 44,
+				"EntityKind": "TestCase",
+				"Name": "Automation Test Created",
+				"Type": "CheckBox",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField1",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 52,
+				"EntityKind": "Request",
+				"Name": "Company Size",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField3",
+				"Value": "Micro (<10)\r\nSmall (10-50)\r\nMedium (50-250)\r\nLarge (>250)",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 59,
+				"EntityKind": "Bug",
+				"Name": "Came out to Production",
+				"Type": "CheckBox",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 62,
+				"EntityKind": "Impediment",
+				"Name": "Related entity",
+				"Type": "Entity",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField1",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 90,
+				"EntityKind": "UserStory",
+				"Name": "Python Tests",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField1",
+				"Value": "No need\r\nShould be added\r\nAdded",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 91,
+				"EntityKind": "Bug",
+				"Name": "Python Tests",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField1",
+				"Value": "No need\r\nShould be added\r\nAdded",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 96,
+				"EntityKind": "Request",
+				"Name": "Tracked by",
+				"Type": "MultipleSelectionList",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField6",
+				"Value": "tracked_by_Sergey\r\ntracked_by_Kate\r\ntracked_by_Alex\r\ntracked_by_Slava\r\ntracked_by_Anna",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 97,
+				"EntityKind": "Project",
+				"Name": "Project Type",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField1",
+				"Value": "Internal\r\nNon Commercial\r\nCustom\r\nProduct\r\nHead",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 98,
+				"EntityKind": "Bug",
+				"Name": "Tracked by",
+				"Type": "MultipleSelectionList",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField8",
+				"Value": "tracked_by_Sergey\r\ntracked_by_Kate\r\ntracked_by_Alex\r\ntracked_by_Slava\r\ntracked_by_Anna",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 100,
+				"EntityKind": "Project",
+				"Name": "State",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField2",
+				"Value": "New\r\nPlanned\r\nIn Progress\r\nAbandoned\r\nCompleted",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 122,
+				"EntityKind": "Feature",
+				"Name": "Target Release",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField1",
+				"Value": "Q3 2012\r\nQ4 2012\r\nQ1 2013\r\nQ2 2013\r\nQ3 2013\r\nQ4 2013\r\nQ1 2014\r\nQ2 2014\r\nQ3 2014\r\nQ4 2014\r\nQ1 2015\r\nQ2 2015\r\nQ3 2015\r\nQ4 2015\r\nQ1 2016\r\nQ2 2016\r\nQ3 2016\r\nQ4 2016",
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 130,
+				"EntityKind": "UserStory",
+				"Name": "Google Doc",
+				"Type": "URL",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 131,
+				"EntityKind": "Task",
+				"Name": "Google Doc",
+				"Type": "URL",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 140,
+				"EntityKind": "Feature",
+				"Name": "Google Doc",
+				"Type": "URL",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 143,
+				"EntityKind": "Request",
+				"Name": "Area",
+				"Type": "MultipleSelectionList",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField5",
+				"Value": "Other\r\nN/A\r\nUndelete\r\nCustom reports limitations\r\nHelp Desk\r\nImport\r\nExport\r\nInstall/Upgrade\r\nBurn Down\r\nToDo list\r\nPerformance\r\nMultiple Final States\r\nPrint\r\nWorkflow states (how to)\r\nEffort/Estimate/Progress\r\nNew Search\r\nVacations/Calendar\r\nQA improvements\r\nCustom reports (errors)\r\nAllocation/Load by person\r\nTP3 filters\r\nTP3 cards not seen on board\r\nEmail notifications\r\nPlugins troubleshooting\r\nREST API\r\nPOP email plugin\r\nTeams <-> Projects\r\nTime Sheet\r\nCustom Fields\r\nTP3 Access\r\nSQL issues\r\nMashups\r\niOS\r\nMigration\r\nComet\r\nRestore On-Demand account\r\nMove to European server\r\nSubversion\r\nGit\r\nBugzilla\r\nCKEditor\r\nTimeline\r\nRename On-Demand account\r\nMercurial\r\nTFS\r\nPermissions\r\nJIRA\r\nLists\r\nCustomize Cards\r\nBrowser issues\r\nVisual Studio\r\nTime\r\nAuthentication\r\nRelations\r\nProduct questions\r\nShare Boards\r\nZapier\r\nCDN\r\nAndroid\r\n@mention\r\nLeft Menu\r\nProgram\r\nDowntimes\r\nEclipse\\Mylyn\r\nEpic\r\nFollow\r\nCross-Project Releases\r\nAttachments\r\nPeople Capacity\r\nCustom Rules\r\nWebHooks\r\nCustom Graphic Reports\r\nTeam Workflow\r\nDashboards\r\nVisual Encoding\r\nLogin problems\r\nDomain model (hierarchy)\r\nSorting and Ordering\r\nMilestone\r\nMarkdown\r\nSingle Sign-On\r\nLicense Problems",
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": "",
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 144,
+				"EntityKind": "Request",
+				"Name": "Internal Notes",
+				"Type": "RichText",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField4",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 210,
+				"EntityKind": "Build",
+				"Name": "States",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField3",
+				"Value": "Scheduled\r\nRelease started / In testing\r\nProduction Ready\r\nReleased to all",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 221,
+				"EntityKind": "UserStory",
+				"Name": "UserVoice Idea",
+				"Type": "URL",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField3",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 222,
+				"EntityKind": "Bug",
+				"Name": "UserVoice Idea",
+				"Type": "URL",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField3",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 223,
+				"EntityKind": "Feature",
+				"Name": "UserVoice Idea",
+				"Type": "URL",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField3",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 237,
+				"EntityKind": "UserStory",
+				"Name": "Guide Update is Required",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField4",
+				"Value": "Yes\r\nNo",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 238,
+				"EntityKind": "Bug",
+				"Name": "Guide Update is Required",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField4",
+				"Value": "Yes\r\nNo",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 240,
+				"EntityKind": "UserStory",
+				"Name": "Guide Update Progress",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField5",
+				"Value": "In Progress\r\nDone",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 241,
+				"EntityKind": "Bug",
+				"Name": "Guide Update Progress",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField5",
+				"Value": "In Progress\r\nDone",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 301,
+				"EntityKind": "Feature",
+				"Name": "Kano",
+				"Type": "DropDown",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField4",
+				"Value": "Must Have\r\nPerformer\r\nExciter",
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 302,
+				"EntityKind": "Feature",
+				"Name": "New Licenses per Month",
+				"Type": "Number",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField5",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 303,
+				"EntityKind": "Feature",
+				"Name": "Duration in months",
+				"Type": "Number",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField6",
+				"Value": null,
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 304,
+				"EntityKind": "Build",
+				"Name": "Notes",
+				"Type": "Text",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField1",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 437,
+				"EntityKind": "Build",
+				"Name": "Deployed to Plan",
+				"Type": "Date",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField2",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 438,
+				"EntityKind": "Build",
+				"Name": "Deployed to Sandbox",
+				"Type": "Date",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField4",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 439,
+				"EntityKind": "Build",
+				"Name": "Deployed to Paid",
+				"Type": "Date",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField5",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 440,
+				"EntityKind": "Build",
+				"Name": "Deployed to All",
+				"Type": "Date",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField6",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 441,
+				"EntityKind": "Build",
+				"Name": "Put into CC",
+				"Type": "Date",
+				"Required": false,
+				"Listed": true,
+				"EntityFieldName": "CustomField7",
+				"Value": null,
+				"CalculationModel": null,
+				"CalculationModelContainsCollections": null,
+				"Units": null,
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 479,
+				"EntityKind": "UserStory",
+				"Name": "KickStarted",
+				"Type": "CheckBox",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField6",
+				"Value": null,
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": "",
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 480,
+				"EntityKind": "Bug",
+				"Name": "KickStarted",
+				"Type": "CheckBox",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField6",
+				"Value": null,
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": "",
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 481,
+				"EntityKind": "Request",
+				"Name": "HoursSpentInQueue",
+				"Type": "Number",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField7",
+				"Value": null,
+				"CalculationModel": "iif(Comments.Count > 0, (Datetime.Now-LastCommentDate).TotalHours, (DateTime.Now-CreateDate).TotalHours)",
+				"CalculationModelContainsCollections": true,
+				"Units": "hours",
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 487,
+				"EntityKind": "Request",
+				"Name": "Notify on",
+				"Type": "Date",
+				"Required": false,
+				"Listed": false,
+				"EntityFieldName": "CustomField8",
+				"Value": null,
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": "",
+				"Process": {
+					"Id": 1,
+					"IsDefault": true
+				}
+			},
+			{
+				"Id": 537,
+				"EntityKind": "Team",
+				"Name": "Velocity",
+				"Type": "Text",
+				"Required": true,
+				"Listed": true,
+				"EntityFieldName": "CustomField1",
+				"Value": null,
+				"CalculationModel": "",
+				"CalculationModelContainsCollections": null,
+				"Units": "",
+				"Process": {
+					"Id": null,
+					"IsDefault": null
+				}
+			}
+		]
+	}
+}

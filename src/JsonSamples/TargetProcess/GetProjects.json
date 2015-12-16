@@ -1,0 +1,73 @@
+{
+	"Items": [
+		{
+			"ResourceType": "Project",
+			"Id": 49105,
+			"Name": "TP3",
+			"Description": "<div>Complete TP redesign. The goal is to create the best agile project management tool for the masses.</div>\r\n",
+			"StartDate": "\/Date(1328248800000-0600)\/",
+			"EndDate": "\/Date(1420610399000-0600)\/",
+			"CreateDate": "\/Date(1338374770000-0500)\/",
+			"ModifyDate": "\/Date(1450185248000-0600)\/",
+			"LastCommentDate": "\/Date(1349255308000-0500)\/",
+			"Tags": "workshop, next build, timeline",
+			"NumericPriority": 5.0,
+			"IsActive": true,
+			"IsProduct": true,
+			"Abbreviation": "TP3",
+			"MailReplyAddress": "support@targetprocess.com",
+			"Color": "#e2eece",
+			"Progress": 0.6906,
+			"PlannedStartDate": "\/Date(1328248800000-0600)\/",
+			"PlannedEndDate": "\/Date(1420437599000-0600)\/",
+			"IsPrivate": null,
+			"EntityType": {
+				"Id": 1,
+				"Name": "Project"
+			},
+			"Process": {
+				"Id": 1,
+				"Name": "Kanban TP"
+			},
+			"Owner": {
+				"ResourceType": "GeneralUser",
+				"Id": 3,
+				"FirstName": "Michael",
+				"LastName": "Dubakov",
+				"Login": "firefalcon"
+			},
+			"LastCommentedUser": {
+				"ResourceType": "GeneralUser",
+				"Id": 3,
+				"FirstName": "Michael",
+				"LastName": "Dubakov",
+				"Login": "firefalcon"
+			},
+			"Project": null,
+			"LinkedTestPlan": null,
+			"Program": {
+				"ResourceType": "Program",
+				"Id": 28251,
+				"Name": "Targetprocess"
+			},
+			"EntityState": {
+				"Id": 2423,
+				"Name": "Done",
+				"NumericPriority": 4.0
+			},
+			"Company": null,
+			"CustomFields": [
+				{
+					"Name": "Project Type",
+					"Type": "DropDown",
+					"Value": "Product"
+				},
+				{
+					"Name": "State",
+					"Type": "DropDown",
+					"Value": "In Progress"
+				}
+			]
+		}
+	]
+}
