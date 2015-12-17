@@ -7,13 +7,15 @@ Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
 type Result<'a> = Success of 'a | Failure of string option
 
-module Union = 
+module UnionUtils = 
     let toString (v: 'a) =
         let (case, _) = FSharpValue.GetUnionFields(v, typeof<'a>) 
         case.Name
 
-module String = 
-    let toLower(s: string) = s.ToLower()
+module StringUtils = 
+    let toString(o: obj) = o.ToString()
+    let toStringLower(o: obj) = (toString o).ToLower()
+    let (|StartsWith|_|) (value: string) (str: string) = if str.StartsWith value then Some() else None
 
 [<AutoOpen>]
 module ConvertUtils = 
@@ -89,8 +91,6 @@ module ProcessUtils =
             startProcess(processFilePath, args, startNewShell) 
         finally
             Directory.SetCurrentDirectory(currentDirectory)
-
-let toStringLower(o: obj) = o.ToString() |> String.toLower
     
 let failure message = 
     printError message

@@ -10,6 +10,7 @@ open Common
 open System
 open System.IO
 open FSharp.Data
+open StringUtils
 
 Directory.SetCurrentDirectory __SOURCE_DIRECTORY__
 
@@ -19,10 +20,9 @@ type private TpUserInfo = { UserName: string; Password: string; }
 
 let private curDir = Directory.GetCurrentDirectory()
 let private apiRoot = "https://plan.tpondemand.com/api/v1"
-let private userInfo = { UserName = "EMPTY"; Password = "EMPTY" }
 
 [<AutoOpen>]
-module Filters = 
+module Filtering = 
     type Filter<'a> = 
         | Equal of attr: string * value: 'a
         | NotEqual of attr: string * value: 'a
@@ -77,7 +77,7 @@ module Filters =
         static member isNull (attr: string) = StringFilter(IsNull(attr)) 
         static member isNotNull (attr: string) = StringFilter(IsNotNull(attr)) 
         
-    let createFilterQuery (filters: Filter list) = 
+    let createFilterQueryValue (filters: Filter list) = 
         let getOperandStr value = 
             match value with
             | DateTime(value) -> "'" + value.ToString("yyyy-MM-dd") + "'"
@@ -113,56 +113,112 @@ module Filters =
         |> String.concat " and "
 
 [<AutoOpen>]
+module Paging = 
+    type PagingOptions = 
+        | SkipTake of skip: int * take: int
+        | GetPage of pageSize: int * pageIndex: int
+
+    let createPagingQueryParameters = function
+        | SkipTake(skip, take) -> 
+            seq { 
+                yield ("skip", skip |> toString) 
+                yield ("take", take |> toString)}
+        | GetPage(pageSize, pageIndex) -> 
+            seq { 
+                yield ("skip", pageSize * pageIndex |> toString) 
+                yield ("take", pageSize |> toString)}
+
+[<AutoOpen>]
 module private Http = 
+    type IResponseParser<'a> = abstract member Parse: string -> 'a 
+    type ICollectionResponseParser<'a> = abstract member Parse: string -> 'a []
+
     let withDefaultParameters userInfo request = 
         request
         |> withBasicAuthentication userInfo.UserName userInfo.Password
         |> withHeader (Accept("application/json"))
 
-    let maybeWithFilters filter request = 
-        let maybeFilterStr = filter |> Option.map createFilterQuery
-        request |> maybeWithQueryStringParam "where" maybeFilterStr
+    let maybeWithFiltering filter request = 
+        let maybeFilteringStr = filter |> Option.map createFilterQueryValue
+        request |> maybeWithQueryStringParam ("where", maybeFilteringStr)
 
-module private GetContext = 
-    let private url = apiRoot |> sprintf "%s/Context" 
+    let maybeWithPaging pager request = 
+        pager 
+        |> Option.map createPagingQueryParameters
+        |> Option.map (fun queryStringParams -> request |> withQueryStringParams queryStringParams)
+        |> function
+           | Some(newRequest) -> newRequest
+           | None -> request
+
+    let processTPResponse handlers (response: Response) = 
+        let handlersDict = handlers |> dict
+        let createResponseMessage (message: string) =
+            let message = message.Trim([|'.'|])
+            match response.EntityBody with
+            | Some(responseBody) -> sprintf "%s. Status code: '%d', response body: '%s'." message response.StatusCode responseBody
+            | None -> sprintf "%s. Status code: '%d'." message response.StatusCode 
+        
+        match handlersDict.TryGetValue response.StatusCode with
+        | true, handler -> response.EntityBody |> handler
+        | false, _ -> 
+            let statusCodeStr = response.StatusCode.ToString()
+            match statusCodeStr with
+            | "400" -> apiFailure "TargetProcess api communication error: Unauthorized. Wrong or missed credentials."
+            | "401" -> apiFailure "TargetProcess api communication error: Bad format. Incorrect parameter or query string."
+            | "403" -> apiFailure "TargetProcess api communication error: Forbidden. A user has insufficient rights to perform an action."
+            | "404" -> apiFailure "TargetProcess api communication error: Requested Entity not found."
+            | "500" -> apiFailure "TargetProcess api server-side error."
+            | "501" -> apiFailure "TargetProcess api server-side error: Not implemented. The requested action is either not supported or not implemented yet."
+            | StartsWith "4" -> apiFailure <| createResponseMessage "Unexpected TargetProcess api communication error."
+            | StartsWith "5" -> apiFailure <| createResponseMessage "TargetProcess api server-side error."
+            | _ -> apiFailure <| createResponseMessage "Nonsupported TargetProcess api response type."
+
+    let getTpResponse url userInfo filters pager = 
+        createRequest Get url
+        |> withDefaultParameters userInfo
+        |> maybeWithFiltering filters
+        |> maybeWithPaging pager
+        |> getResponse
+
+    let getSingle<'a, 'b when 'a :> IResponseParser<'b>> (parser: 'a, url, userInfo, filters, pager) = 
+        getTpResponse url userInfo filters pager
+        |> processTPResponse [200, (fun responseBody -> responseBody |> Option.map parser.Parse)] 
+    
+    let getCollection<'a, 'b when 'a :> ICollectionResponseParser<'b>> (parser: 'a, url, userInfo, filters, pager) = 
+        getTpResponse url userInfo filters pager
+        |> processTPResponse [
+            200, (function 
+                    | Some(responseBody) -> parser.Parse responseBody  
+                    | None -> Array.empty<'b> )]
+    
+module private GetContextRequest = 
     type private Response = JsonProvider<"""JsonSamples\TargetProcess\GetContext.json""">
+    let private url = apiRoot |> sprintf "%s/Context" 
+    let private parser = 
+        { new IResponseParser<Response.Root> with 
+            member this.Parse responseBody = Response.Parse responseBody}
 
-    type GetContextCommand = 
-        static member Execute userInfo filters =
-            let response = 
-                createRequest Get url
-                |> withDefaultParameters userInfo
-                |> maybeWithFilters filters
-                |> getResponse
+    let execute(userInfo, filters, pager) = getSingle(parser, url, userInfo, filters, pager) 
 
-            match (response.StatusCode, response.EntityBody) with
-            | 200, Some(response) -> Response.Parse response
-            | statusCode, Some(response) -> 
-                apiFailure <| sprintf "Unexpected TargetProcess communication error. Status code: '%d', response body: '%s'." statusCode response
-            | _ -> apiFailure <| sprintf "Unexpected TargetProcess communication error."
-
-module private GetProjects = 
-    let private url = apiRoot |> sprintf "%s/Projects" 
+module private GetProjectsRequest = 
     type private Response = JsonProvider<"""JsonSamples\TargetProcess\GetProjects.json""">
-   
-    type GetProjectsCommand = 
-        static member Execute userInfo filters =
-            ()
+    let private url = apiRoot |> sprintf "%s/Projects" 
+    let private parser = 
+        { new ICollectionResponseParser<Response.Item> with 
+            member this.Parse responseBody = (Response.Parse responseBody).Items}
 
-open GetContext
+    let execute (userInfo, filters, pager) = getCollection(parser, url, userInfo, filters, pager) 
+
 type TargetProcessClient(username, password) =
     let userInfo = { UserName = username; Password = password }
-    member __.GetContext(?filters) = GetContextCommand.Execute userInfo filters
+    
+    member __.GetContext(?filters, ?pager) = GetContextRequest.execute(userInfo, filters, pager)
+    member __.GetProjects(?filters, ?pager) = GetProjectsRequest.execute(userInfo, filters, pager)
 
-let tpclient = new TargetProcessClient(userInfo.UserName, userInfo.Password)
-let context = tpclient.GetContext([Filters.equal("projectIds", 49105)])
+let tpclient = new TargetProcessClient("EMPTY", "EMPTY")
+let tpProject = tpclient.GetProjects([Filters.equal("Name", "TP3")]) |> Seq.head
+let context = 
+    tpclient.GetContext(
+        filters = [Filters.equal("projectIds", tpProject.Id)],
+        pager = SkipTake(0, 25)).Value
 
-let projectName = "TP3"
-let projectsUrl = sprintf "%s/Projects" apiRoot
-let contextUrl = sprintf "%s/Context" apiRoot
-
-let projects = 
-    createRequest Get projectsUrl
-    |> withDefaultParameters userInfo
-    |> withQueryStringItem {name = "where"; value = sprintf "Name eq '%s'" projectName}
-    |> getResponse

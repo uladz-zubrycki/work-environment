@@ -4,13 +4,16 @@
 open HttpClient
 open System.Net
 
-let maybeWithQueryStringParam name value request = 
-    if value |> Option.isSome then
-        request |> withQueryStringItem { name = name; value = value.Value }
-    else request
+let private foldToRequest items (request: Request) fn = (request, items) ||> Seq.fold (fun req item -> req |> fn item) 
+let withQueryStringParam (name, value) request = request |> withQueryStringItem { name = name; value = value }
 
-let maybeWithQueryString parameters request = 
-    (request, parameters) 
-    ||> Seq.fold (fun req (name, value) -> req |> maybeWithQueryStringParam name value) 
+let maybeWithQueryStringParam (name, value) request = 
+    value 
+    |> Option.map (fun v -> request |> withQueryStringParam (name, v))
+    |> function 
+       | Some(newRequest) -> newRequest
+       | None -> request
 
+let withQueryStringParams parameters request = foldToRequest parameters request withQueryStringParam
+let maybeWithQueryStringParams parameters request = foldToRequest parameters request maybeWithQueryStringParam
 let apiFailure message = message |> WebException |> raise 
