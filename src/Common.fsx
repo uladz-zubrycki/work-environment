@@ -31,7 +31,7 @@ let failure message =
     printError message
     exit 0
 
-let normalizePath path relativeRoot =
+let normalizePath relativeRoot path =
     try
         path
         |> Environment.ExpandEnvironmentVariables

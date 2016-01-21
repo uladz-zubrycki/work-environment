@@ -20,7 +20,7 @@ with
             | Action(_) -> "Specifies which action should be performed. Possible options: generate, delete"
 
 let curDir = Directory.GetCurrentDirectory()
-let outputDirectory = normalizePath (curDir @@ @"..\bin") (Directory.GetCurrentDirectory())
+let outputDirectory = normalizePath curDir  @"..\bin" 
 let repoFolder = getConfigPathValue(config.Repository.Path)
 let commandsPath = curDir @@ "Commands"
 let getCommandPath commandFile = commandsPath @@ commandFile

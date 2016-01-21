@@ -23,9 +23,10 @@ type private Config = JsonProvider<""".\JsonSamples\Config.json""">
 let private curDir = Directory.GetCurrentDirectory()
 let private argsParser = ArgumentParser.Create<Arguments>()
 let private args = argsParser.ParseCommandLine(inputs = fsi.CommandLineArgs, ignoreUnrecognized = true)
+let private defaultConfigPath = normalizePath curDir "..\.config.json"  
 
 let private configPath = 
-    let pathArg = args.GetResult(<@Config_Path@>, defaultValue = "..\.config.json")
+    let pathArg = args.GetResult(<@Config_Path@>, defaultValue = defaultConfigPath)
     if not (File.Exists pathArg) then failure <| sprintf "Can't find configuration file at '%s'." pathArg
     else pathArg
 
